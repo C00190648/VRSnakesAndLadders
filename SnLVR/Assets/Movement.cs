@@ -19,6 +19,8 @@ public class Movement : MonoBehaviour {
 
     public bool canMoveOnClick;
 
+    public bool moveUp;
+
     // Use this for initialization
     void Start()
     {
@@ -46,12 +48,21 @@ public class Movement : MonoBehaviour {
         }
 
         // Check to see if I should move
-        if (moveForward)
+        if (moveForward && !moveUp)
         {
             // Find the forward direction
             Vector3 forward = vrHead.TransformDirection(Vector3.forward);
             // Tell CharacterController to move forward
             controller.SimpleMove(forward * speed);
+        }
+        Debug.Log(vrHead.eulerAngles.x);
+
+        if(moveUp && vrHead.eulerAngles.x < 320  && moveForward)
+        {
+            // Find the forward direction
+            //Vector3 up = vrHead.TransformDirection(Vector3.up);
+            // Tell CharacterController to move forward
+            controller.Move(Vector3.up * speed * Time.deltaTime);
         }
     }
 }

@@ -198,6 +198,7 @@
     <Compile Include="Assets\GoogleVR\Scripts\Utilities\GvrMathHelpers.cs" />
     <Compile Include="Assets\GoogleVR\Scripts\Utilities\GvrUIHelpers.cs" />
     <Compile Include="Assets\GoogleVR\Scripts\Video\GvrVideoPlayerTexture.cs" />
+    <Compile Include="Assets\LadderClimb.cs" />
     <Compile Include="Assets\Movement.cs" />
     <Compile Include="Assets\Question.cs" />
     <Compile Include="Assets\SubmitAnswers.cs" />
