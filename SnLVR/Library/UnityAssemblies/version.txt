@@ -1,0 +1,24 @@
+5.6.1f1:3.1.0.0
+Android
+F:/Bonus/Editor/Data/Managed/UnityEngine.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/TestRunner/nunit.framework.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll
+F:/Bonus/Editor/Data/Managed/UnityEditor.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/TestRunner/Editor/UnityEditor.TestRunner.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/UnityAnalytics/Editor/UnityEditor.Analytics.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/UnityHoloLens/Editor/UnityEditor.HoloLens.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/UnityPurchasing/Editor/UnityEditor.Purchasing.dll
+F:/Bonus/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll
+F:/Bonus/Editor/Data/Managed/UnityEditor.Graphs.dll
+F:/Bonus/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+F:/Bonus/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll
+C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll
