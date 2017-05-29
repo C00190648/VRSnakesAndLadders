@@ -15,6 +15,8 @@ public class Movement : MonoBehaviour {
     // VR Head
     private Transform vrHead;
 
+    public static Movement playerMove;
+
 
     public bool canMoveOnClick;
 
@@ -29,6 +31,8 @@ public class Movement : MonoBehaviour {
         gvrViewer = transform.GetChild(0).GetComponent<GvrEditorEmulator>();
         // Fnd the VR Head
         vrHead = Camera.main.transform;
+
+        playerMove = this;
 
     }
 
