@@ -133,7 +133,7 @@ public class GvrArmModel : MonoBehaviour {
   public float fadeDistanceFromFace = 0.32f;
 
   /// Controller distance from face after which the tooltips appear (meters).
-  [Range(0.4f, 0.6f)]
+  [Range(0.1f, 0.6f)]
   public float tooltipMinDistanceFromFace = 0.45f;
 
   /// When the angle (degrees) between the controller and the head is larger than

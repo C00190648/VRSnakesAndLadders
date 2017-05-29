@@ -15,7 +15,6 @@ public class Movement : MonoBehaviour {
     // VR Head
     private Transform vrHead;
 
-    public static Movement playerMove;
 
     public bool canMoveOnClick;
 
@@ -31,15 +30,11 @@ public class Movement : MonoBehaviour {
         // Fnd the VR Head
         vrHead = Camera.main.transform;
 
-        playerMove = this;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(GvrPointerPhysicsRaycaster.cc.hit);
-
         // In the Google VR button press
         if (Input.GetButtonDown("Fire1") && canMoveOnClick)
         {
@@ -55,14 +50,11 @@ public class Movement : MonoBehaviour {
             // Tell CharacterController to move forward
             controller.SimpleMove(forward * speed);
         }
-        Debug.Log(vrHead.eulerAngles.x);
 
         if(moveUp && vrHead.eulerAngles.x < 320  && moveForward)
         {
-            // Find the forward direction
-            //Vector3 up = vrHead.TransformDirection(Vector3.up);
-            // Tell CharacterController to move forward
             controller.Move(Vector3.up * speed * Time.deltaTime);
         }
     }
+
 }

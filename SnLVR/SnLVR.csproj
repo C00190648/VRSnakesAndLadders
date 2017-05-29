@@ -202,6 +202,7 @@
     <Compile Include="Assets\Movement.cs" />
     <Compile Include="Assets\Question.cs" />
     <Compile Include="Assets\SubmitAnswers.cs" />
+    <Compile Include="Assets\changeScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\GoogleVR\Demos\Environment\DemoEnvUnlitGrayscale.shader" />

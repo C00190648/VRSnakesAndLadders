@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class SubmitAnswers : MonoBehaviour {
     //List containing all of the button objects for the correct answers.
     public List<GameObject> correctAnswers = new List<GameObject>();
@@ -34,6 +34,8 @@ public class SubmitAnswers : MonoBehaviour {
         if (score >= minimumCorrect)
         {
             progressText.text = "Goal met; proceed to next floor.";
+            //SceneManager.LoadScene(1);
+            LadderClimb.ladder.gameObject.SetActive(true);
         }
         else
         {

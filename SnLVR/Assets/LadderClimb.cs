@@ -1,32 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class LadderClimb : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public static LadderClimb ladder;
+    public bool canUse;
 
-    private void OnTriggerEnter(Collider other)
+	// Use this for initialization
+	void Start ()
+    {
+        gameObject.SetActive(false);
+        ladder = this;
+
+    }
+
+     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            Movement.playerMove.moveUp = true;
+            GameObject.Find("Player").GetComponent<Movement>().moveUp = true;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+     void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
-            Movement.playerMove.moveUp = false;
+            GameObject.Find("Player").GetComponent<Movement>().moveUp = true;
         }
     }
 }

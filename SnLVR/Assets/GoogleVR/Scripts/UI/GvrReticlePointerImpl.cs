@@ -87,7 +87,8 @@ public class GvrReticlePointerImpl : GvrBasePointer {
   /// The intersectionRay is the ray that was cast to determine the intersection.
   public override void OnPointerEnter(RaycastResult rayastResult, Ray ray,
     bool isInteractive) {
-        Movement.playerMove.canMoveOnClick = false;
+        //Movement.playerMove.canMoveOnClick = false;s
+        GameObject.Find("Player").GetComponent<Movement>().canMoveOnClick = false;
         SetPointerTarget(rayastResult.worldPosition, isInteractive);
   }
 
@@ -111,7 +112,8 @@ public class GvrReticlePointerImpl : GvrBasePointer {
     ReticleDistanceInMeters = RETICLE_DISTANCE_MAX;
     ReticleInnerAngle = RETICLE_MIN_INNER_ANGLE;
     ReticleOuterAngle = RETICLE_MIN_OUTER_ANGLE;
-        Movement.playerMove.canMoveOnClick = true;
+        //Movement.playerMove.canMoveOnClick = true;
+        GameObject.Find("Player").GetComponent<Movement>().canMoveOnClick = true;
     }
 
   /// Called when a trigger event is initiated. This is practically when
