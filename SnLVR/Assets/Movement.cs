@@ -22,6 +22,8 @@ public class Movement : MonoBehaviour {
 
     public bool moveUp;
 
+    float gravity = 9.81f;
+
     // Use this for initialization
     void Start()
     {
@@ -34,11 +36,15 @@ public class Movement : MonoBehaviour {
 
         playerMove = this;
 
+        moveUp = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(moveUp);
+
         // In the Google VR button press
         if (Input.GetButtonDown("Fire1") && canMoveOnClick)
         {
@@ -55,9 +61,15 @@ public class Movement : MonoBehaviour {
             controller.SimpleMove(forward * speed);
         }
 
+        if(controller.isGrounded == false)
+        {
+            controller.SimpleMove(Vector3.down * gravity * Time.deltaTime);
+        }
+
         if(moveUp && vrHead.eulerAngles.x < 320  && moveForward)
         {
             controller.Move(Vector3.up * speed * Time.deltaTime);
+            
         }
     }
 
