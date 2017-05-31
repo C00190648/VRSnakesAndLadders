@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour {
+public class Movement : MonoBehaviour
+{
 
     // How fast to move
     public float speed = 3.0F;
@@ -61,15 +62,15 @@ public class Movement : MonoBehaviour {
             controller.SimpleMove(forward * speed);
         }
 
-        if(controller.isGrounded == false && !moveUp)
+        if (!moveUp)
         {
             controller.SimpleMove(Vector3.down * gravity * Time.deltaTime);
         }
 
-        if(moveUp && vrHead.eulerAngles.x < 320  && moveForward)
+        if (moveUp && vrHead.eulerAngles.x < 320 && moveForward)
         {
             controller.Move(Vector3.up * speed * Time.deltaTime);
-            
+
         }
     }
 

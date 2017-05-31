@@ -40,6 +40,7 @@ public class SubmitAnswers : MonoBehaviour {
         else
         {
             progressText.text = "Goal unmet; return to previous floor.";
+            TrapFloor.floor.setMoving(true);
         }
     }
 }
