@@ -10,7 +10,8 @@ public class changeScene : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            SceneManager.LoadScene(1);
+            //SceneManager.GetSceneByBuildIndex(buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

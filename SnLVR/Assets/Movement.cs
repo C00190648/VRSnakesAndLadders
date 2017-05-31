@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(moveUp);
+
 
         // In the Google VR button press
         if (Input.GetButtonDown("Fire1") && canMoveOnClick)
@@ -61,7 +61,7 @@ public class Movement : MonoBehaviour {
             controller.SimpleMove(forward * speed);
         }
 
-        if(controller.isGrounded == false)
+        if(controller.isGrounded == false && !moveUp)
         {
             controller.SimpleMove(Vector3.down * gravity * Time.deltaTime);
         }
