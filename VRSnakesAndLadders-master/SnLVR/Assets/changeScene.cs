@@ -4,15 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class changeScene : MonoBehaviour {
-
-    public int scene;
+public class changeScene : MonoBehaviour
+{
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            SceneManager.LoadScene(scene);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

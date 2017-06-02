@@ -6,7 +6,6 @@ using UnityEngine;
 public class LadderClimb : MonoBehaviour {
 
     public static LadderClimb ladder;
-    public bool canUse;
 
 	// Use this for initialization
 	void Start ()
@@ -20,7 +19,7 @@ public class LadderClimb : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
-            GameObject.Find("Player").GetComponent<Movement>().moveUp = true;
+            Movement.playerMove.moveUp = true;
         }
     }
 
@@ -28,7 +27,7 @@ public class LadderClimb : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            GameObject.Find("Player").GetComponent<Movement>().moveUp = true;
+            Movement.playerMove.moveUp = false;
         }
     }
 }

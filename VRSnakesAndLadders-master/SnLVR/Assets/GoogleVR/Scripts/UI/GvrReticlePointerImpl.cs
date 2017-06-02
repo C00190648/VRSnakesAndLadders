@@ -87,7 +87,17 @@ public class GvrReticlePointerImpl : GvrBasePointer {
   /// The intersectionRay is the ray that was cast to determine the intersection.
   public override void OnPointerEnter(RaycastResult rayastResult, Ray ray,
     bool isInteractive) {
-        Movement.playerMove.canMoveOnClick = false;
+
+        if(Movement.playerMove.moveForward)
+        {
+            Movement.playerMove.canMoveOnClick = true;
+        }
+
+        else
+        {
+            Movement.playerMove.canMoveOnClick = false;
+        }
+       
         //GameObject.Find("Player").GetComponent<Movement>().canMoveOnClick = false;
         SetPointerTarget(rayastResult.worldPosition, isInteractive);
   }

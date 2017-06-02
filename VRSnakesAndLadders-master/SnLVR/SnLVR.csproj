@@ -204,6 +204,7 @@
     <Compile Include="Assets\SubmitAnswers.cs" />
     <Compile Include="Assets\TrapFloor.cs" />
     <Compile Include="Assets\changeScene.cs" />
+    <Compile Include="Assets\dropLevel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\GoogleVR\Demos\Environment\DemoEnvUnlitGrayscale.shader" />
