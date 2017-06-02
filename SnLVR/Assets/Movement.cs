@@ -23,7 +23,7 @@ public class Movement : MonoBehaviour
 
     public bool moveUp;
 
-    float gravity = 9.81f;
+    float gravity = 18.81f;
 
     // Use this for initialization
     void Start()
@@ -47,10 +47,20 @@ public class Movement : MonoBehaviour
 
 
         // In the Google VR button press
-        if (Input.GetButtonDown("Fire1") && canMoveOnClick)
+        //if (Input.GetButtonDown("Fire1") && canMoveOnClick)
+        //{
+        //    // Change the state of moveForward
+        //    moveForward = !moveForward;
+        //}
+
+
+        if (vrHead.eulerAngles.x > 21 && vrHead.eulerAngles.x < 90)
         {
-            // Change the state of moveForward
-            moveForward = !moveForward;
+            moveForward = true;
+        }
+        else
+        {
+            moveForward = false;
         }
 
         // Check to see if I should move
@@ -64,13 +74,18 @@ public class Movement : MonoBehaviour
 
         if (!moveUp)
         {
-            controller.SimpleMove(Vector3.down * gravity * Time.deltaTime);
+            controller.Move(Vector3.down * gravity * Time.deltaTime);
         }
 
-        if (moveUp && vrHead.eulerAngles.x < 320 && moveForward)
+        //if (moveUp && vrHead.eulerAngles.x < 320 && moveForward)
+        //{
+        //    controller.Move(Vector3.up * speed * Time.deltaTime);
+
+        //}
+
+        if (moveUp && vrHead.eulerAngles.x > 310)
         {
             controller.Move(Vector3.up * speed * Time.deltaTime);
-
         }
     }
 

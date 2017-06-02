@@ -7,19 +7,31 @@ public class Question : MonoBehaviour
 {
 
     //Stores whether or not this particular answer was the one chosen.
-    private bool selected;
+    public bool selected;
 
     public void Answer(bool given)
     {//Checks the given answer against the correct one.
         if (given)
         {//If the user picked this answer, register it as such.
-            GetComponent<Image>().color = Color.yellow;
+            GetComponent<Image>().color = Color.green;
             selected = true;
         }
         else
         {//Otherwise, make sure it's not registered as selected.
             GetComponent<Image>().color = Color.white;
             selected = false;
+        }
+    }
+
+    public void Update()
+    {
+        if (selected == true)
+        {
+            GetComponent<Image>().color = Color.red;
+        }
+        else
+        {
+            GetComponent<Image>().color = Color.white;
         }
     }
 

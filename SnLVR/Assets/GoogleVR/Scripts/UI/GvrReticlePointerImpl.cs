@@ -15,6 +15,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+using System.Collections;
+using System.Collections.Generic;
 /// Draws a circular reticle in front of any object that the user points at.
 /// The circle dilates if the object is clickable.
 public class GvrReticlePointerImpl : GvrBasePointer {
@@ -97,8 +99,35 @@ public class GvrReticlePointerImpl : GvrBasePointer {
         {
             Movement.playerMove.canMoveOnClick = false;
         }
-       
+
         //GameObject.Find("Player").GetComponent<Movement>().canMoveOnClick = false;
+        GameObject target = rayastResult.gameObject;
+
+        if (target.tag == "interactive") //tag for answerable elements
+        {
+          //  target.GetComponentInParent
+            Question questionScript = target.GetComponentInParent<Question>(); //get the script parent of target
+
+            Transform board = target.transform.parent.parent; //get the entire question board of answers
+
+            foreach (Transform child in board) //reset answer board
+            {
+                child.GetComponent<Question>().selected = false;
+            }
+            questionScript.Answer(true); //invoke target as selected answer
+           // Debug.Log("select");
+        }
+
+        if (target.tag == "submit") //tag for answerable elements
+        {
+            SubmitAnswers submitScript = target.GetComponentInParent<SubmitAnswers>(); //get the script parent of target
+
+            submitScript.CheckAnswers();
+            
+        }
+
+
+
         SetPointerTarget(rayastResult.worldPosition, isInteractive);
   }
 
@@ -112,6 +141,8 @@ public class GvrReticlePointerImpl : GvrBasePointer {
     bool isInteractive) {
 
     SetPointerTarget(rayastResult.worldPosition, isInteractive);
+
+    
   }
 
   /// Called when the user's look no longer intersects an object previously
