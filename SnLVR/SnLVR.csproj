@@ -195,6 +195,7 @@
     <Compile Include="Assets\LadderClimb.cs" />
     <Compile Include="Assets\Movement.cs" />
     <Compile Include="Assets\Question.cs" />
+    <Compile Include="Assets\SphereGazeEvents.cs" />
     <Compile Include="Assets\SubmitAnswers.cs" />
     <Compile Include="Assets\TrapFloor.cs" />
     <Compile Include="Assets\changeScene.cs" />
