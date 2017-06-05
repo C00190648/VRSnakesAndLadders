@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
 
     // How fast to move
-    public float speed = 3.0F;
+    public float speed = 5.0F;
     // Should I move forward or not
     public bool moveForward;
     // CharacterController script
@@ -54,7 +54,7 @@ public class Movement : MonoBehaviour
         //}
 
 
-        if (vrHead.eulerAngles.x > 21 && vrHead.eulerAngles.x < 90)
+        if (vrHead.eulerAngles.x > 30 && vrHead.eulerAngles.x < 90)
         {
             moveForward = true;
         }
@@ -83,7 +83,7 @@ public class Movement : MonoBehaviour
 
         //}
 
-        if (moveUp && vrHead.eulerAngles.x > 310)
+        if (moveUp && vrHead.eulerAngles.x > 270)
         {
             controller.Move(Vector3.up * speed * Time.deltaTime);
         }
