@@ -14,12 +14,54 @@ public class SubmitAnswers : MonoBehaviour {
     //Used when submitting answers. Total number of correct answers.
     private int score;
 
+    public bool trigger = false;
+
+    private double time = 0;
+
+    public static SubmitAnswers submit;
+
 	// Use this for initialization
 	void Start () {
         progressText.text = "When finished, submit chosen answers here.";
+
+        gameObject.SetActive(false);
+
+        submit = this;
 	}
-	
-	public void CheckAnswers()
+
+    public void GazeEnter()
+    {
+        //Debug.Log("triggered =  " + trigger);
+        //if (trigger == true)
+        //{
+        trigger = true;
+       
+    }
+
+    private void FixedUpdate()
+    {
+        if (trigger == true)
+        {
+            time += Time.fixedDeltaTime;
+        }
+
+        if (time > 1)
+        {
+            CheckAnswers();
+        }
+    }
+
+    public void GazeExit()
+    {
+
+        trigger = false;
+        time = 0;
+    }
+
+
+
+
+    public void CheckAnswers()
     {//When the player presses the Submit button, the game checks to see if the correct answers were selected.
         score = 0;
         for (int i = 0; i < correctAnswers.Count; i++)
@@ -28,6 +70,8 @@ public class SubmitAnswers : MonoBehaviour {
             {//If it was correct, the player gains a point.
                 score++;
             }
+            correctAnswers[i].GetComponent<Button>().interactable = false;
+            correctAnswers[i].GetComponent<Image>().color = Color.green;
         }
 
         //Next, check to see if the player got enough questions right.

@@ -83,7 +83,7 @@ public class Movement : MonoBehaviour
 
         //}
 
-        if (moveUp && vrHead.eulerAngles.x > 270)
+        if (moveUp)
         {
             controller.Move(Vector3.up * speed * Time.deltaTime);
         }

@@ -25,13 +25,16 @@ public class Question : MonoBehaviour
 
     public void Update()
     {
-        if (selected == true)
+        if (GetComponent<Button>().interactable)
         {
-            GetComponent<Image>().color = Color.red;
-        }
-        else
-        {
-            GetComponent<Image>().color = Color.white;
+            if (selected == true)
+            {
+                GetComponent<Image>().color = Color.red;
+            }
+            else
+            {
+                GetComponent<Image>().color = Color.white;
+            }
         }
     }
 

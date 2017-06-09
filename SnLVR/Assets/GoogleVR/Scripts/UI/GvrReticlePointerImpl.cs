@@ -62,6 +62,8 @@ public class GvrReticlePointerImpl : GvrBasePointer {
 
   public override float MaxPointerDistance { get { return RETICLE_DISTANCE_MAX; } }
 
+    private float time = 0;
+
   public GvrReticlePointerImpl() {
     ReticleGrowthSpeed = 8.0f;
     ReticleInnerAngle = 0.0f;
@@ -105,7 +107,7 @@ public class GvrReticlePointerImpl : GvrBasePointer {
 
         if (target.tag == "interactive") //tag for answerable elements
         {
-          //  target.GetComponentInParent
+            //  target.GetComponentInParent
             Question questionScript = target.GetComponentInParent<Question>(); //get the script parent of target
 
             Transform board = target.transform.parent.parent; //get the entire question board of answers
@@ -114,17 +116,47 @@ public class GvrReticlePointerImpl : GvrBasePointer {
             {
                 child.GetComponent<Question>().selected = false;
             }
+       //    questionScript.trigger = true;
             questionScript.Answer(true); //invoke target as selected answer
-           // Debug.Log("select");
+                                         // Debug.Log("select");
+
         }
 
-        if (target.tag == "submit") //tag for answerable elements
+        else if (target.tag == "submit") //tag for answerable elements
         {
-            SubmitAnswers submitScript = target.GetComponentInParent<SubmitAnswers>(); //get the script parent of target
 
-            submitScript.CheckAnswers();
-            
+            GameObject.FindGameObjectWithTag("submit").SetActive(false);
+
+            SubmitAnswers.submit.gameObject.SetActive(true);
+
+            //GameObject.FindGameObjectWithTag("submitYes").SetActive(true);
+            //GameObject.FindGameObjectWithTag("submitNo").SetActive(true);
+
         }
+
+        else if (target.tag == "submitYes") //tag for answerable elements
+        {
+
+            // time += Time.fixedDeltaTime;
+            // Debug.Log(time);
+
+            SubmitAnswers submitScript = target.GetComponentInParent<SubmitAnswers>(); //get the script parent of target
+            submitScript.trigger = true;
+
+            //     submitScript.CheckAnswers();
+            //   time = 0;
+            Debug.Log("truify");
+
+        }
+        else
+        {
+            Debug.Log("falsify");
+            GameObject submission = GameObject.FindGameObjectWithTag("submit");
+            SubmitAnswers submitScript = submission.GetComponent<SubmitAnswers>();
+            submitScript.trigger = false;
+           
+        }
+
 
 
 
@@ -199,6 +231,7 @@ public class GvrReticlePointerImpl : GvrBasePointer {
     MaterialComp.SetFloat("_InnerDiameter", ReticleInnerDiameter * ReticleDistanceInMeters);
     MaterialComp.SetFloat("_OuterDiameter", ReticleOuterDiameter * ReticleDistanceInMeters);
     MaterialComp.SetFloat("_DistanceInMeters", ReticleDistanceInMeters);
+     //   Debug.Log("size " + ReticleOuterDiameter);
   }
 
   private bool SetPointerTarget(Vector3 target, bool interactive) {
