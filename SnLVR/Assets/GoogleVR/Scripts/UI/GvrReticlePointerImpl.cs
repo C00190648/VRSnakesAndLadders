@@ -125,18 +125,6 @@ public class GvrReticlePointerImpl : GvrBasePointer {
         else if (target.tag == "submit") //tag for answerable elements
         {
 
-            GameObject.FindGameObjectWithTag("submit").SetActive(false);
-
-            SubmitAnswers.submit.gameObject.SetActive(true);
-
-            //GameObject.FindGameObjectWithTag("submitYes").SetActive(true);
-            //GameObject.FindGameObjectWithTag("submitNo").SetActive(true);
-
-        }
-
-        else if (target.tag == "submitYes") //tag for answerable elements
-        {
-
             // time += Time.fixedDeltaTime;
             // Debug.Log(time);
 

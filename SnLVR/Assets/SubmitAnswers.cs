@@ -17,16 +17,9 @@ public class SubmitAnswers : MonoBehaviour {
     public bool trigger = false;
 
     private double time = 0;
-
-    public static SubmitAnswers submit;
-
 	// Use this for initialization
 	void Start () {
         progressText.text = "When finished, submit chosen answers here.";
-
-        gameObject.SetActive(false);
-
-        submit = this;
 	}
 
     public void GazeEnter()
