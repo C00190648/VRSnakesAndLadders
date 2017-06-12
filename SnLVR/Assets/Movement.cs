@@ -42,7 +42,7 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
 
@@ -69,24 +69,28 @@ public class Movement : MonoBehaviour
             // Find the forward direction
             Vector3 forward = vrHead.TransformDirection(Vector3.forward);
             // Tell CharacterController to move forward
-            controller.SimpleMove(forward * speed);
+
+            transform.Translate(forward * speed * Time.deltaTime);
+
+
+            //controller.SimpleMove(forward * speed);
         }
 
-        if (!moveUp)
-        {
-            controller.Move(Vector3.down * gravity * Time.deltaTime);
-        }
-
-        //if (moveUp && vrHead.eulerAngles.x < 320 && moveForward)
+        //if (!moveUp)
         //{
-        //    controller.Move(Vector3.up * speed * Time.deltaTime);
-
+        //    controller.Move(Vector3.down * gravity * Time.deltaTime);
         //}
 
-        if (moveUp)
-        {
-            controller.Move(Vector3.up * speed * Time.deltaTime);
-        }
+        ////if (moveUp && vrHead.eulerAngles.x < 320 && moveForward)
+        ////{
+        ////    controller.Move(Vector3.up * speed * Time.deltaTime);
+
+        ////}
+
+        //if (moveUp)
+        //{
+        //    //controller.Move(Vector3.up * speed * Time.deltaTime);
+        //}
     }
 
 }
