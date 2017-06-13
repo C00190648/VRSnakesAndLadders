@@ -9,8 +9,7 @@ public class Movement : MonoBehaviour
     public float speed = 5.0F;
     // Should I move forward or not
     public bool moveForward;
-    // CharacterController script
-    private CharacterController controller;
+
     // GvrViewer Script
     private GvrEditorEmulator gvrViewer;
     // VR Head
@@ -28,8 +27,6 @@ public class Movement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        // Find the CharacterController
-        controller = GetComponent<CharacterController>();
         // Find the GvrViewer on child 0
         gvrViewer = transform.GetChild(0).GetComponent<GvrEditorEmulator>();
         // Fnd the VR Head
@@ -45,15 +42,6 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
 
-
-        // In the Google VR button press
-        //if (Input.GetButtonDown("Fire1") && canMoveOnClick)
-        //{
-        //    // Change the state of moveForward
-        //    moveForward = !moveForward;
-        //}
-
-
         if (vrHead.eulerAngles.x > 30 && vrHead.eulerAngles.x < 90)
         {
             moveForward = true;
@@ -68,29 +56,21 @@ public class Movement : MonoBehaviour
         {
             // Find the forward direction
             Vector3 forward = vrHead.TransformDirection(Vector3.forward);
-            // Tell CharacterController to move forward
-
+            // Tell Character to move forward
             transform.Translate(forward * speed * Time.deltaTime);
-
-
-            //controller.SimpleMove(forward * speed);
         }
 
-        //if (!moveUp)
-        //{
-        //    controller.Move(Vector3.down * gravity * Time.deltaTime);
-        //}
 
-        ////if (moveUp && vrHead.eulerAngles.x < 320 && moveForward)
-        ////{
-        ////    controller.Move(Vector3.up * speed * Time.deltaTime);
+        if (moveUp)
+        {
+            transform.Translate(Vector3.up * speed * Time.deltaTime);
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
+        }
 
-        ////}
-
-        //if (moveUp)
-        //{
-        //    //controller.Move(Vector3.up * speed * Time.deltaTime);
-        //}
+        if (!moveUp)
+        {
+            gameObject.GetComponent<Rigidbody>().useGravity = true;
+        }
     }
 
 }
