@@ -40,7 +40,10 @@ public class SubmitAnswers : MonoBehaviour {
 
         if (time > 1)
         {
-            CheckAnswers();
+            if (this.GetComponent<Button>().interactable)
+            {
+                CheckAnswers();
+            }
         }
     }
 
@@ -79,5 +82,7 @@ public class SubmitAnswers : MonoBehaviour {
             progressText.text = "Goal unmet; return to previous floor.";
             TrapFloor.floor.setMoving(true);
         }
+	    
+	this.GetComponent<Button>().interactable = false;
     }
 }
