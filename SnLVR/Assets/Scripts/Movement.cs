@@ -49,6 +49,10 @@ public class Movement : MonoBehaviour
         else
         {
             moveForward = false;
+
+            //Audio for when the player walks
+            GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().loop = true;
         }
 
         // Check to see if I should move

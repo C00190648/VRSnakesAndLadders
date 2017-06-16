@@ -6,24 +6,19 @@ public class TrapFloor : MonoBehaviour {
 
     public static TrapFloor floor;
     bool moving;
-    float moveTimer;
 
 	// Use this for initialization
 	void Start () {
         moving = false;
-	moveTimer = 0f;
         floor = this;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	    if (moving) {
-            	moveTimer += Time.deltaTime;
-            	if (moveTimer > 3)
-            	{
-                    transform.position = transform.position + (new Vector3(5, 0, 0) * Time.deltaTime);
-            	}
-            }
+		if (moving) {
+            //GetComponent<Rigidbody>().AddForce(new Vector3(50, 0, 0) * Time.deltaTime);
+            transform.position = transform.position + (new Vector3(1, 0, 0) * Time.deltaTime);
+        }
 	}
 
     public void setMoving(bool value) {

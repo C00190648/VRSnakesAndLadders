@@ -17,14 +17,16 @@ public class SubmitAnswers : MonoBehaviour {
     public bool trigger = false;
 
     private double time = 0;
-	// Use this for initialization
-	void Start () {
+
+    public AudioSource audio;
+    // Use this for initialization
+    void Start () {
         progressText.text = "When finished, submit chosen answers here.";
 	}
 
     public void GazeEnter()
     {
-        //Debug.Log("triggered =  " + trigger);
+        Debug.Log("triggered =  " + trigger);
         //if (trigger == true)
         //{
         trigger = true;
@@ -40,10 +42,7 @@ public class SubmitAnswers : MonoBehaviour {
 
         if (time > 1)
         {
-            if (this.GetComponent<Button>().interactable)
-            {
-                CheckAnswers();
-            }
+            CheckAnswers();
         }
     }
 
@@ -76,13 +75,15 @@ public class SubmitAnswers : MonoBehaviour {
             progressText.text = "Goal met; proceed to next floor.";
             //SceneManager.LoadScene(1);
             LadderClimb.ladder.gameObject.SetActive(true);
+            Button.Destroy(gameObject);
         }
         else
         {
             progressText.text = "Goal unmet; return to previous floor.";
             TrapFloor.floor.setMoving(true);
+            audio.Play();
+            Button.Destroy(gameObject);
+
         }
-	    
-	this.GetComponent<Button>().interactable = false;
     }
 }

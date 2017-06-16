@@ -105,50 +105,58 @@ public class GvrReticlePointerImpl : GvrBasePointer {
         //GameObject.Find("Player").GetComponent<Movement>().canMoveOnClick = false;
         GameObject target = rayastResult.gameObject;
 
-        if (target.tag == "interactive") //tag for answerable elements
+        if (target != null)
         {
-            //  target.GetComponentInParent
-            Question questionScript = target.GetComponentInParent<Question>(); //get the script parent of target
-
-            Transform board = target.transform.parent.parent; //get the entire question board of answers
-
-            foreach (Transform child in board) //reset answer board
+            if (target.tag == "interactive") //tag for answerable elements
             {
-                child.GetComponent<Question>().selected = false;
+                //  target.GetComponentInParent
+                Question questionScript = target.GetComponentInParent<Question>(); //get the script parent of target
+
+                Transform board = target.transform.parent.parent; //get the entire question board of answers
+
+                foreach (Transform child in board) //reset answer board
+                {
+                    child.GetComponent<Question>().selected = false;
+                    child.GetComponent<Question>().trigger = false;
+                }
+              //  if (questionScript.exit == false)
+               // {
+                    questionScript.trigger = true;
+               // }
+                // questionScript.Answer(true); //invoke target as selected answer
+                // Debug.Log("select");
+
             }
-       //    questionScript.trigger = true;
-            questionScript.Answer(true); //invoke target as selected answer
-                                         // Debug.Log("select");
 
+            else if (target.tag == "submit") //tag for answerable elements
+            {
+
+                // time += Time.fixedDeltaTime;
+                // Debug.Log(time);
+
+                SubmitAnswers submitScript = target.GetComponentInParent<SubmitAnswers>(); //get the script parent of target
+                submitScript.trigger = true;
+
+                //     submitScript.CheckAnswers();
+                //   time = 0;
+             //   Debug.Log("truify");
+
+            }
+            else
+            {
+              //  Debug.Log("falsify");
+                GameObject submission = GameObject.FindGameObjectWithTag("submit");
+                SubmitAnswers submitScript = submission.GetComponent<SubmitAnswers>();
+                submitScript.trigger = false;
+                
+
+            }
+
+
+
+
+            SetPointerTarget(rayastResult.worldPosition, isInteractive);
         }
-
-        else if (target.tag == "submit") //tag for answerable elements
-        {
-
-            // time += Time.fixedDeltaTime;
-            // Debug.Log(time);
-
-            SubmitAnswers submitScript = target.GetComponentInParent<SubmitAnswers>(); //get the script parent of target
-            submitScript.trigger = true;
-
-            //     submitScript.CheckAnswers();
-            //   time = 0;
-            Debug.Log("truify");
-
-        }
-        else
-        {
-            Debug.Log("falsify");
-            GameObject submission = GameObject.FindGameObjectWithTag("submit");
-            SubmitAnswers submitScript = submission.GetComponent<SubmitAnswers>();
-            submitScript.trigger = false;
-           
-        }
-
-
-
-
-        SetPointerTarget(rayastResult.worldPosition, isInteractive);
   }
 
   /// Called every frame the user is still pointing at a valid GameObject. This

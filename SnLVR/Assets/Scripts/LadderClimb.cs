@@ -20,6 +20,9 @@ public class LadderClimb : MonoBehaviour {
         if(other.tag == "Player")
         {
             Movement.playerMove.moveUp = true;
+
+            // Audio plays when player climbs laddrr
+            GetComponent<AudioSource>().Play();
         }
     }
 
