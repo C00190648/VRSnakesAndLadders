@@ -19,9 +19,9 @@ public class TrapFloor : MonoBehaviour {
 	void Update () {
 		if (moving) {
             moveTimer += Time.deltaTime;
-            if (moveTimer > 3)
+            if (moveTimer > 5)
             {
-                transform.position = transform.position + (new Vector3(5, 0, 0) * Time.deltaTime);
+                transform.position = transform.position + (new Vector3(3, 0, 0) * Time.deltaTime);
             }
         }
 	}
