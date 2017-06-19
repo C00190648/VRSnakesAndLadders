@@ -22,6 +22,8 @@ public class Movement : MonoBehaviour
 
     public bool moveUp;
 
+    public bool moveBack;
+
     float gravity = 18.81f;
 
     // Use this for initialization
@@ -35,6 +37,7 @@ public class Movement : MonoBehaviour
         playerMove = this;
 
         moveUp = false;
+        moveBack = false;
 
     }
 
@@ -44,11 +47,20 @@ public class Movement : MonoBehaviour
 
         if (vrHead.eulerAngles.x > 30 && vrHead.eulerAngles.x < 90)
         {
+            Debug.Log("forward");
             moveForward = true;
+            moveBack = false;
+        }
+        else if (vrHead.eulerAngles.x < 340 && vrHead.eulerAngles.x > 310)
+        {
+            Debug.Log("backward");
+            moveBack = true;
+            moveForward = false;
         }
         else
         {
             moveForward = false;
+            moveBack = false;
 
             //Audio for when the player walks
             GetComponent<AudioSource>().Play();
@@ -64,6 +76,13 @@ public class Movement : MonoBehaviour
             transform.Translate(forward * speed * Time.deltaTime);
         }
 
+        if (moveBack && !moveUp)
+        {
+            // Find the forward direction
+            Vector3 forward = vrHead.TransformDirection(Vector3.forward);
+            // Tell Character to move back
+            transform.Translate(forward * -speed * Time.deltaTime);
+        }
 
         if (moveUp)
         {
@@ -75,6 +94,7 @@ public class Movement : MonoBehaviour
         {
             gameObject.GetComponent<Rigidbody>().useGravity = true;
         }
+
     }
 
 }
