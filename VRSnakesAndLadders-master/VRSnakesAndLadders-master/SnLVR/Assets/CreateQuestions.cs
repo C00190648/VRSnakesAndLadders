@@ -8,8 +8,6 @@ public class CreateQuestions : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Debug.Log("It's time to create some motherfucking questions, bitch.");
-
         string[] q1 = new string[5];
         //Question
         q1[0] = "According to the pre-crash Report what age group had the highest number of passenger deaths in collisions where alcohol was a factor?";
@@ -69,8 +67,6 @@ public class CreateQuestions : MonoBehaviour {
         q5[4] = "Accelerate and complete the turn";
         //Submit this question to the bank to be randomly pulled.
         questionBank.Add(q5);
-
-        Debug.Log("All right, asshole, some questions were made, what the fuck now?");
     }
 	
 	// Update is called once per frame
