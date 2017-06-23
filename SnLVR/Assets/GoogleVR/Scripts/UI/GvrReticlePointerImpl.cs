@@ -15,6 +15,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+using System.Collections;
+using System.Collections.Generic;
 /// Draws a circular reticle in front of any object that the user points at.
 /// The circle dilates if the object is clickable.
 public class GvrReticlePointerImpl : GvrBasePointer {
@@ -60,6 +62,8 @@ public class GvrReticlePointerImpl : GvrBasePointer {
 
   public override float MaxPointerDistance { get { return RETICLE_DISTANCE_MAX; } }
 
+    private float time = 0;
+
   public GvrReticlePointerImpl() {
     ReticleGrowthSpeed = 8.0f;
     ReticleInnerAngle = 0.0f;
@@ -87,7 +91,72 @@ public class GvrReticlePointerImpl : GvrBasePointer {
   /// The intersectionRay is the ray that was cast to determine the intersection.
   public override void OnPointerEnter(RaycastResult rayastResult, Ray ray,
     bool isInteractive) {
-    SetPointerTarget(rayastResult.worldPosition, isInteractive);
+
+        if(Movement.playerMove.moveForward)
+        {
+            Movement.playerMove.canMoveOnClick = true;
+        }
+
+        else
+        {
+            Movement.playerMove.canMoveOnClick = false;
+        }
+
+        //GameObject.Find("Player").GetComponent<Movement>().canMoveOnClick = false;
+        GameObject target = rayastResult.gameObject;
+
+        if (target != null)
+        {
+            if (target.tag == "interactive") //tag for answerable elements
+            {
+                //  target.GetComponentInParent
+                Question questionScript = target.GetComponentInParent<Question>(); //get the script parent of target
+
+                Transform board = target.transform.parent.parent; //get the entire question board of answers
+
+                foreach (Transform child in board) //reset answer board
+                {
+                    child.GetComponent<Question>().selected = false;
+                    child.GetComponent<Question>().trigger = false;
+                }
+              //  if (questionScript.exit == false)
+               // {
+                    questionScript.trigger = true;
+               // }
+                // questionScript.Answer(true); //invoke target as selected answer
+                // Debug.Log("select");
+
+            }
+
+            else if (target.tag == "submit") //tag for answerable elements
+            {
+
+                // time += Time.fixedDeltaTime;
+                // Debug.Log(time);
+
+                SubmitAnswers submitScript = target.GetComponentInParent<SubmitAnswers>(); //get the script parent of target
+                submitScript.trigger = true;
+
+                //     submitScript.CheckAnswers();
+                //   time = 0;
+             //   Debug.Log("truify");
+
+            }
+            else
+            {
+              //  Debug.Log("falsify");
+                GameObject submission = GameObject.FindGameObjectWithTag("submit");
+                SubmitAnswers submitScript = submission.GetComponent<SubmitAnswers>();
+                submitScript.trigger = false;
+                
+
+            }
+
+
+
+
+            SetPointerTarget(rayastResult.worldPosition, isInteractive);
+        }
   }
 
   /// Called every frame the user is still pointing at a valid GameObject. This
@@ -98,7 +167,10 @@ public class GvrReticlePointerImpl : GvrBasePointer {
   /// The intersectionRay is the ray that was cast to determine the intersection.
   public override void OnPointerHover(RaycastResult rayastResult, Ray ray,
     bool isInteractive) {
+
     SetPointerTarget(rayastResult.worldPosition, isInteractive);
+
+    
   }
 
   /// Called when the user's look no longer intersects an object previously
@@ -109,7 +181,9 @@ public class GvrReticlePointerImpl : GvrBasePointer {
     ReticleDistanceInMeters = RETICLE_DISTANCE_MAX;
     ReticleInnerAngle = RETICLE_MIN_INNER_ANGLE;
     ReticleOuterAngle = RETICLE_MIN_OUTER_ANGLE;
-  }
+        Movement.playerMove.canMoveOnClick = true;
+        //GameObject.Find("Player").GetComponent<Movement>().canMoveOnClick = true;
+    }
 
   /// Called when a trigger event is initiated. This is practically when
   /// the user begins pressing the trigger.
@@ -153,6 +227,7 @@ public class GvrReticlePointerImpl : GvrBasePointer {
     MaterialComp.SetFloat("_InnerDiameter", ReticleInnerDiameter * ReticleDistanceInMeters);
     MaterialComp.SetFloat("_OuterDiameter", ReticleOuterDiameter * ReticleDistanceInMeters);
     MaterialComp.SetFloat("_DistanceInMeters", ReticleDistanceInMeters);
+     //   Debug.Log("size " + ReticleOuterDiameter);
   }
 
   private bool SetPointerTarget(Vector3 target, bool interactive) {

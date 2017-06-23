@@ -104,8 +104,9 @@ public class GvrReticlePointer : MonoBehaviour {
 
 
   private void UpdateReticleProperties() {
-    if (reticlePointerImpl == null) {
-      return;
+    if (reticlePointerImpl == null)
+    {
+        return;
     }
     reticlePointerImpl.ReticleGrowthSpeed = reticleGrowthSpeed;
     reticlePointerImpl.PointerTransform = transform;
