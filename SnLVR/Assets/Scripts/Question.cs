@@ -7,21 +7,25 @@ public class Question : MonoBehaviour
 {
     public bool trigger = false;
 
+    public bool correct;
+
+    public GameObject scorekeeper;
+
     private double time = 0;
     //Stores whether or not this particular answer was the one chosen.
     public bool selected;
-    public void Answer(bool given)
+    public void Answer()
     {//Checks the given answer against the correct one.
-        if (given)
+        selected = true;
+        /*if (correct)
         {//If the user picked this answer, register it as such.
-            GetComponent<Image>().color = Color.red;
-            selected = true;
+            GetComponent<Image>().color = Color.green;
         }
         else
         {//Otherwise, make sure it's not registered as selected.
-            GetComponent<Image>().color = Color.white;
-            selected = false;
-        }
+            GetComponent<Image>().color = Color.red;
+        }*/
+        scorekeeper.GetComponent<SubmitAnswers>().Increment(correct);
     }
 
 
@@ -34,34 +38,41 @@ public class Question : MonoBehaviour
         //if (time > 0.01) 
        //Debug.Log("state " + trigger);
 
-        if (trigger == true)
-        {
-            time += Time.fixedDeltaTime; 
-            //play answer select starting sound here
-        }
-        else
-        {
-        //    selected = false;
-            time = 0;
-        }
-        
-        if (time >1 && time < 1.1)
-        {
-            Debug.Log("trig state = " + trigger); 
-        }
-        if (time > 2)
-        {
-            Answer(true);
-          //  CheckAnswers();
-        }
 
-       Select();
+        if (GetComponent<Button>().interactable)
+        {
+            if (trigger == true)
+            {
+                time += Time.fixedDeltaTime;
+                //play answer select starting sound here
+            }
+            else
+            {
+                //    selected = false;
+                time = 0;
+            }
+
+            if (time > 1 && time < 1.1)
+            {
+                Debug.Log("trig state = " + trigger);
+            }
+            if (time > 2 && !selected)
+            {
+                //Answer();
+                Select();
+                //  CheckAnswers();
+            }
+
+            //Select();
+        }
     }
 
     public void GazeEnter()
     {
-        trigger = true;
-
+        if (GetComponent<Button>().interactable)
+        {
+            trigger = true;
+        }
     }
 
 
@@ -78,17 +89,25 @@ public class Question : MonoBehaviour
 
     public void Select()
     {
-        if (GetComponent<Button>().interactable)
+        Debug.Log("Selecting.");
+        if (correct)
         {
-            if (selected == true)
-            {
-                GetComponent<Image>().color = Color.red;
-            }
-            else
-            {
-                GetComponent<Image>().color = Color.white;
-            }
+            GetComponent<Image>().color = Color.green;
         }
+        else if (!correct)
+        {
+            GetComponent<Image>().color = Color.red;
+        }
+        scorekeeper.GetComponent<SubmitAnswers>().Increment(correct);
+
+        DisableButtons();
+    }
+
+    private void DisableButtons()
+    {//Make all three buttons on the same board uninteractable to prevent the player from changing their answer.
+        this.transform.parent.transform.Find("Button1").GetComponent<Button>().interactable = false;
+        this.transform.parent.transform.Find("Button2").GetComponent<Button>().interactable = false;
+        this.transform.parent.transform.Find("Button3").GetComponent<Button>().interactable = false;
     }
 
     public bool isSelected()
